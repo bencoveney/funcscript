@@ -1,14 +1,11 @@
 "use strict";
 exports.__esModule = true;
-function IsEmpty(value) {
-    return value === undefined || value === null;
-}
 var Maybe = /** @class */ (function () {
     function Maybe(value) {
         this.value = value;
     }
     Maybe.just = function (value) {
-        if (IsEmpty(value)) {
+        if (Maybe.IsEmpty(value)) {
             throw Error("Cannot call Just on an empty value. Try Create().");
         }
         return new Maybe(value);
@@ -16,34 +13,35 @@ var Maybe = /** @class */ (function () {
     Maybe.nothing = function () {
         return new Maybe(null);
     };
-    Maybe.create = function (value) {
-        return IsEmpty(value) ? Maybe.nothing() : Maybe.just(value);
+    Maybe.from = function (value) {
+        if (Maybe.IsEmpty(value)) {
+            return Maybe.nothing();
+        }
+        if (value instanceof Maybe) {
+            return value;
+        }
+        return Maybe.just(value);
+    };
+    Maybe.IsEmpty = function (value) {
+        return value === undefined || value === null;
     };
     Maybe.prototype.getOrElse = function (defaultValue) {
-        return IsEmpty(this.value) ? defaultValue : this.value;
+        return Maybe.IsEmpty(this.value) ? defaultValue : this.value;
+    };
+    Maybe.prototype.hasValue = function () {
+        return !Maybe.IsEmpty(this.value);
     };
     Maybe.prototype.flatMap = function (mapper) {
-        // Mapping a nothing gives nothing.
-        if (IsEmpty(this.value)) {
-            return Maybe.nothing();
-        }
-        else {
-            return mapper(this.value);
-        }
+        return this.ifElse(mapper, function () { return Maybe.nothing(); });
     };
-    Maybe.prototype.then = function (mapper) {
-        // Mapping a nothing gives nothing.
-        if (IsEmpty(this.value)) {
-            return Maybe.nothing();
-        }
-        var result = mapper(this.value);
-        if (IsEmpty(result)) {
-            return Maybe.nothing();
-        }
-        if (result instanceof Maybe) {
-            return result;
-        }
-        return Maybe.just(result);
+    Maybe.prototype.lift = function (mapper) {
+        return this.ifElse(function (value) { return Maybe.from(mapper(value)); }, function () { return Maybe.nothing(); });
+    };
+    Maybe.prototype.ifElse = function (just, nothing) {
+        return Maybe.from(Maybe.IsEmpty(this.value) ? nothing() : just(this.value));
+    };
+    Maybe.prototype.caseOf = function (cases) {
+        return this.ifElse(cases.just, cases.nothing);
     };
     return Maybe;
 }());

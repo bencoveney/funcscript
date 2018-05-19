@@ -1,17 +1,15 @@
+import { BiValueMonad, BiValueMonadLike } from "./biValueMonad";
+
 export type Empty = undefined | null;
-export type MaybeLike<Value> = Maybe<Value> | Value | Empty;
+export type MaybeLike<Value> = BiValueMonadLike<Value, Empty>;
 
-function IsEmpty(value: any): value is Empty {
-	return value === undefined || value === null;
-}
-
-export class Maybe<Value> {
+export class Maybe<Value> implements BiValueMonad<Value, Empty> {
 	private constructor(
-		private value: Value | Empty
+		private readonly value: Value | Empty
 	) { }
 
 	public static just<Value>(value: Value) {
-		if (IsEmpty(value)) {
+		if (Maybe.IsEmpty(value)) {
 			throw Error("Cannot call Just on an empty value. Try Create().");
 		}
 		return new Maybe(value);
@@ -21,18 +19,26 @@ export class Maybe<Value> {
 		return new Maybe<Value>(null);
 	}
 
-	public static create<Value>(value: MaybeLike<Value>): Maybe<Value> {
-		if (IsEmpty(value)) {
+	public static from<Value>(value: MaybeLike<Value>): Maybe<Value> {
+		if (Maybe.IsEmpty(value)) {
 			return Maybe.nothing();
 		}
 		if (value instanceof Maybe) {
 			return value;
 		}
-		return Maybe.just(value);
+		return Maybe.just(value as Value);
+	}
+
+	private static IsEmpty<Value>(value: Value | Empty): value is Empty {
+		return value === undefined || value === null;
 	}
 
 	public getOrElse(defaultValue: Value) {
-		return IsEmpty(this.value) ? defaultValue : this.value;
+		return Maybe.IsEmpty(this.value) ? defaultValue : this.value;
+	}
+
+	public hasValue(): boolean {
+		return !Maybe.IsEmpty(this.value);
 	}
 
 	public flatMap<Output>(
@@ -48,8 +54,17 @@ export class Maybe<Value> {
 		mapper: (value: Value) => MaybeLike<Output>
 	): Maybe<Output> {
 		return this.ifElse(
-			(value) => Maybe.create(mapper(value)),
+			(value) => Maybe.from(mapper(value)),
 			() => Maybe.nothing()
+		);
+	}
+
+	public ifElse<Output>(
+		just: (value: Value) => MaybeLike<Output>,
+		nothing: () => MaybeLike<Output>
+	): Maybe<Output> {
+		return Maybe.from(
+			Maybe.IsEmpty(this.value) ? nothing() : just(this.value)
 		);
 	}
 
@@ -62,15 +77,6 @@ export class Maybe<Value> {
 		return this.ifElse(
 			cases.just,
 			cases.nothing
-		);
-	}
-
-	public ifElse<Output>(
-		just: (value: Value) => MaybeLike<Output>,
-		nothing: () => MaybeLike<Output>
-	): Maybe<Output> {
-		return Maybe.create(
-			IsEmpty(this.value) ? nothing() : just(this.value)
 		);
 	}
 }
