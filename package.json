@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tsc && node --experimental-modules bin/index.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/bencoveney/typescript-monads/issues"
   },
-  "homepage": "https://github.com/bencoveney/typescript-monads#readme"
+  "homepage": "https://github.com/bencoveney/typescript-monads#readme",
+  "dependencies": {
+    "typescript": "^2.8.3"
+  }
 }

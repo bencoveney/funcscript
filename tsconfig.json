@@ -1,0 +1,12 @@
+{
+	"compilerOptions": {
+		"strict": true,
+		"sourceMap": true,
+		"declaration": true,
+		"outDir": "bin",
+		"pretty": true
+	},
+	"include": [
+		"src/**/*.ts"
+	]
+}
