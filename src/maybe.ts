@@ -1,7 +1,7 @@
 import { BiValueMonad, BiValueMonadLike } from "./biValueMonad";
 
 export type Empty = undefined | null;
-export type MaybeLike<Value> = BiValueMonadLike<Value, Empty>;
+export type MaybeLike<Value> = BiValueMonadLike<Value, Empty, Maybe<Value>>;
 
 export class Maybe<Value> implements BiValueMonad<Value, Empty> {
 	private constructor(

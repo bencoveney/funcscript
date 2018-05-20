@@ -1,4 +1,4 @@
-import { Maybe, Either, BiValueMonad } from "./index";
+import { Maybe, Either, BiValueMonad, Writer } from "./index";
 
 type MightHaveProps = any;
 
@@ -121,4 +121,27 @@ logIt(
 		.lift(decrementWithThrow)
 		.lift(decrementWithThrow)
 		.lift(decrementWithThrow)
+);
+
+const writeLog = <Value>(writer: Writer<Value>) => {
+	const result = writer.get();
+	console.log(`Value:
+${result.value}
+Log:
+${result.log.join("\n")}`);
+}
+
+writeLog(
+	Writer.writer(5)
+		.flatMap(value => Writer.writer(value + 3, ["Added 3"]))
+		.flatMap(value => Writer.writer(value / 2, ["Divided by 2"]))
+		.flatMap(value => Writer.writer(value - 2, ["Subtracted 2"]))
+);
+
+writeLog(
+	Writer.writer(5)
+		.liftWithLog<number>(value => [value + 3, "Added 3"])
+		.liftWithLog<number>(value => [value / 2, "Divided by 2"])
+		.liftWithLog<number>(value => [value / 2, "Divided by 2"])
+		.liftWithLog<number>(value => [value - 2, "Subtracted 2"])
 );

@@ -1,7 +1,7 @@
 import { BiValueMonad, BiValueMonadLike } from "./biValueMonad";
 
 export type OrError<Value> = Value | Error;
-export type EitherLike<Value> = BiValueMonadLike<Value, Error>;
+export type EitherLike<Value> = BiValueMonadLike<Value, Error, Either<Value>>;
 
 interface State<Value> {
 	hasValue: boolean;

@@ -5,4 +5,5 @@ function __export(m) {
 exports.__esModule = true;
 __export(require("./maybe"));
 __export(require("./either"));
+__export(require("./writer"));
 //# sourceMappingURL=index.js.map

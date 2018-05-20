@@ -83,4 +83,17 @@ logIt(index_1.Either
     .lift(decrementWithThrow)
     .lift(decrementWithThrow)
     .lift(decrementWithThrow));
+var writeLog = function (writer) {
+    var result = writer.get();
+    console.log("Value:\n" + result.value + "\nLog:\n" + result.log.join("\n"));
+};
+writeLog(index_1.Writer.writer(5)
+    .flatMap(function (value) { return index_1.Writer.writer(value + 3, ["Added 3"]); })
+    .flatMap(function (value) { return index_1.Writer.writer(value / 2, ["Divided by 2"]); })
+    .flatMap(function (value) { return index_1.Writer.writer(value - 2, ["Subtracted 2"]); }));
+writeLog(index_1.Writer.writer(5)
+    .liftWithLog(function (value) { return [value + 3, "Added 3"]; })
+    .liftWithLog(function (value) { return [value / 2, "Divided by 2"]; })
+    .liftWithLog(function (value) { return [value / 2, "Divided by 2"]; })
+    .liftWithLog(function (value) { return [value - 2, "Subtracted 2"]; }));
 //# sourceMappingURL=test.js.map

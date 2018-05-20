@@ -1,6 +1,6 @@
 import { BiValueMonad, BiValueMonadLike } from "./biValueMonad";
 export declare type OrError<Value> = Value | Error;
-export declare type EitherLike<Value> = BiValueMonadLike<Value, Error>;
+export declare type EitherLike<Value> = BiValueMonadLike<Value, Error, Either<Value>>;
 export declare class Either<Value> implements BiValueMonad<Value, Error> {
     private readonly state;
     private constructor();

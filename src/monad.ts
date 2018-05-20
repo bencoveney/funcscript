@@ -1,7 +1,10 @@
 /**
  * A monad or something that can be turned into one.
  */
-export type MonadLike<Value> = Monad<Value> | Value;
+export type MonadLike<
+	Value,
+	MonadType extends Monad<Value>
+> = Monad<Value> | Value;
 
 /**
  * A monad.

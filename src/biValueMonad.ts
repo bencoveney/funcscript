@@ -3,7 +3,11 @@ import { Monad, MonadLike } from "./monad";
 /**
  * A bi-value monad or something that can be turned into one.
  */
-export type BiValueMonadLike<Value, NotValue> = MonadLike<Value> | NotValue;
+export type BiValueMonadLike<
+	Value,
+	NotValue,
+	MonadType extends BiValueMonad<Value, NotValue> = BiValueMonad<Value, NotValue>
+> = MonadLike<Value, MonadType> | NotValue;
 
 /**
  * A monad which either has a value or doesnt.
