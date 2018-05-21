@@ -3,7 +3,8 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 exports.__esModule = true;
-__export(require("./maybe"));
-__export(require("./either"));
-__export(require("./writer"));
+__export(require("./monad/maybe"));
+__export(require("./monad/either"));
+__export(require("./monad/writer"));
+__export(require("./controlFlow/ifElse"));
 //# sourceMappingURL=index.js.map

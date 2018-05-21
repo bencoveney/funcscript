@@ -1,6 +1,8 @@
-export * from "./maybe";
-export * from "./either";
-export * from "./writer";
+export * from "./monad/maybe";
+export * from "./monad/either";
+export * from "./monad/writer";
 
-export * from "./biValueMonad";
-export * from "./monad";
+export * from "./monad/biValueMonad";
+export * from "./monad/monad";
+
+export * from "./controlFlow/ifElse";

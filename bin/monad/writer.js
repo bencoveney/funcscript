@@ -26,6 +26,7 @@ var Writer = /** @class */ (function () {
     Writer.prototype.liftWithLog = function (mapper) {
         var mapped = mapper(this.state.value);
         if (mapped instanceof Writer) {
+            // Potentially "Output" type could be a log/array, which whill break the
             return this.flatMap(function () { return mapped; });
         }
         else {

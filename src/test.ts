@@ -1,4 +1,4 @@
-import { Maybe, Either, BiValueMonad, Writer } from "./index";
+import { Maybe, Either, BiValueMonad, Writer, ifElse } from "./index";
 
 type MightHaveProps = any;
 
@@ -144,4 +144,34 @@ writeLog(
 		.liftWithLog<number>(value => [value / 2, "Divided by 2"])
 		.liftWithLog<number>(value => [value / 2, "Divided by 2"])
 		.liftWithLog<number>(value => [value - 2, "Subtracted 2"])
+);
+
+console.log(
+	ifElse(
+		1 === 1,
+		() => "True!",
+		() => "False!"
+	)
+);
+
+console.log(
+	ifElse(
+		1 === 2 as any,
+		() => "True!",
+		() => "False!"
+	)
+);
+
+console.log(
+	ifElse(
+		1 === 1,
+		() => "True!"
+	)
+);
+
+console.log(
+	ifElse(
+		1 === 2 as any,
+		() => "True!"
+	)
 );

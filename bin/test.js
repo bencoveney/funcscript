@@ -96,4 +96,8 @@ writeLog(index_1.Writer.writer(5)
     .liftWithLog(function (value) { return [value / 2, "Divided by 2"]; })
     .liftWithLog(function (value) { return [value / 2, "Divided by 2"]; })
     .liftWithLog(function (value) { return [value - 2, "Subtracted 2"]; }));
+console.log(index_1.ifElse(1 === 1, function () { return "True!"; }, function () { return "False!"; }));
+console.log(index_1.ifElse(1 === 2, function () { return "True!"; }, function () { return "False!"; }));
+console.log(index_1.ifElse(1 === 1, function () { return "True!"; }));
+console.log(index_1.ifElse(1 === 2, function () { return "True!"; }));
 //# sourceMappingURL=test.js.map
