@@ -1,4 +1,4 @@
-import { Maybe, Either, BiValueMonad, Writer, ifElse } from "./index";
+import { Maybe, Either, BiValueMonad, Writer, ifElse, switchCase } from "./index";
 
 type MightHaveProps = any;
 
@@ -173,5 +173,29 @@ console.log(
 	ifElse(
 		1 === 2 as any,
 		() => "True!"
+	)
+);
+
+console.log(
+	switchCase(
+		"dog",
+		[
+			["cat", "meow"],
+			["dog", "woof"],
+			["cow", "moo"],
+		],
+		"baa"
+	)
+);
+
+console.log(
+	switchCase(
+		"sheep",
+		[
+			["cat", "meow"],
+			["dog", "woof"],
+			["cow", "moo"],
+		],
+		"baa"
 	)
 );

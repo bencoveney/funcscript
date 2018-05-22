@@ -100,4 +100,14 @@ console.log(index_1.ifElse(1 === 1, function () { return "True!"; }, function ()
 console.log(index_1.ifElse(1 === 2, function () { return "True!"; }, function () { return "False!"; }));
 console.log(index_1.ifElse(1 === 1, function () { return "True!"; }));
 console.log(index_1.ifElse(1 === 2, function () { return "True!"; }));
+console.log(index_1.switchCase("dog", [
+    ["cat", "meow"],
+    ["dog", "woof"],
+    ["cow", "moo"],
+], "baa"));
+console.log(index_1.switchCase("sheep", [
+    ["cat", "meow"],
+    ["dog", "woof"],
+    ["cow", "moo"],
+], "baa"));
 //# sourceMappingURL=test.js.map

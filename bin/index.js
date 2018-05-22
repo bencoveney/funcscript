@@ -7,4 +7,5 @@ __export(require("./monad/maybe"));
 __export(require("./monad/either"));
 __export(require("./monad/writer"));
 __export(require("./controlFlow/ifElse"));
+__export(require("./controlFlow/switchCase"));
 //# sourceMappingURL=index.js.map
