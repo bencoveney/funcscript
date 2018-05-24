@@ -1,4 +1,4 @@
-import { Maybe, Either, BiValueMonad, Writer, ifElse, switchCase } from "./index";
+import { Maybe, Either, BiValueMonad, Writer, ifElse, switchCase, Enumerable } from "./index";
 
 type MightHaveProps = any;
 
@@ -199,3 +199,25 @@ console.log(
 		"baa"
 	)
 );
+
+const justValues = Enumerable.from([1, 2, 3, 4, 5]);
+
+for(const value of justValues) {
+	console.log(value);
+}
+
+const mappedValues = Enumerable
+	.from([1, 2, 3, 4, 5])
+	.map((value) => value * 2);
+
+for(const value of mappedValues) {
+	console.log(value);
+}
+
+const filteredValues = Enumerable
+	.from([1, 2, 3, 4, 5])
+	.filter((value) => value < 2 || value  > 3);
+
+for(const value of filteredValues) {
+	console.log(value);
+}

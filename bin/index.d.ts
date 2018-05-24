@@ -5,3 +5,4 @@ export * from "./monad/biValueMonad";
 export * from "./monad/monad";
 export * from "./controlFlow/ifElse";
 export * from "./controlFlow/switchCase";
+export * from "./iterators/enumerable";

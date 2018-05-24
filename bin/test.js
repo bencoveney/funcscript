@@ -1,7 +1,7 @@
 "use strict";
-exports.__esModule = true;
-var index_1 = require("./index");
-var logIt = function (maybe) {
+Object.defineProperty(exports, "__esModule", { value: true });
+const index_1 = require("./index");
+const logIt = (maybe) => {
     try {
         console.log(maybe.getOrElse("No result"));
     }
@@ -9,41 +9,41 @@ var logIt = function (maybe) {
         console.log("Error during evaluation");
     }
 };
-var value = { first: { second: { third: "Hello World!" } } };
+const value = { first: { second: { third: "Hello World!" } } };
 logIt(index_1.Maybe
     .just(value)
-    .flatMap(function (value) { return index_1.Maybe.from(value.first); })
-    .flatMap(function (value) { return index_1.Maybe.from(value.second); })
-    .flatMap(function (value) { return index_1.Maybe.from(value.third); }));
+    .flatMap((value) => index_1.Maybe.from(value.first))
+    .flatMap((value) => index_1.Maybe.from(value.second))
+    .flatMap((value) => index_1.Maybe.from(value.third)));
 logIt(index_1.Maybe
     .just(value)
-    .flatMap(function (value) { return index_1.Maybe.from(value.first); })
-    .flatMap(function (value) { return index_1.Maybe.from(value.second); })
-    .flatMap(function (value) { return index_1.Maybe.from(value.numberThree); }));
+    .flatMap((value) => index_1.Maybe.from(value.first))
+    .flatMap((value) => index_1.Maybe.from(value.second))
+    .flatMap((value) => index_1.Maybe.from(value.numberThree)));
 logIt(index_1.Maybe
     .just(value)
-    .lift(function (value) { return value.first; })
-    .lift(function (value) { return value.second; })
-    .lift(function (value) { return value.third; }));
+    .lift((value) => value.first)
+    .lift((value) => value.second)
+    .lift((value) => value.third));
 logIt(index_1.Maybe
     .just(value)
-    .lift(function (value) { return value.first; })
-    .lift(function (value) { return value.second; })
-    .lift(function (value) { return value.numberThree; }));
-var decrementWithoutThrow = function (value) {
+    .lift((value) => value.first)
+    .lift((value) => value.second)
+    .lift((value) => value.numberThree));
+const decrementWithoutThrow = (value) => {
     return value <= 0 ? Error("Value too low") : value - 1;
 };
 logIt(index_1.Either
     .right(3)
-    .flatMap(function (value) { return index_1.Either.from(decrementWithoutThrow(value)); })
-    .flatMap(function (value) { return index_1.Either.from(decrementWithoutThrow(value)); })
-    .flatMap(function (value) { return index_1.Either.from(decrementWithoutThrow(value)); }));
+    .flatMap((value) => index_1.Either.from(decrementWithoutThrow(value)))
+    .flatMap((value) => index_1.Either.from(decrementWithoutThrow(value)))
+    .flatMap((value) => index_1.Either.from(decrementWithoutThrow(value))));
 logIt(index_1.Either
     .right(3)
-    .flatMap(function (value) { return index_1.Either.from(decrementWithoutThrow(value)); })
-    .flatMap(function (value) { return index_1.Either.from(decrementWithoutThrow(value)); })
-    .flatMap(function (value) { return index_1.Either.from(decrementWithoutThrow(value)); })
-    .flatMap(function (value) { return index_1.Either.from(decrementWithoutThrow(value)); }));
+    .flatMap((value) => index_1.Either.from(decrementWithoutThrow(value)))
+    .flatMap((value) => index_1.Either.from(decrementWithoutThrow(value)))
+    .flatMap((value) => index_1.Either.from(decrementWithoutThrow(value)))
+    .flatMap((value) => index_1.Either.from(decrementWithoutThrow(value))));
 logIt(index_1.Either
     .right(3)
     .lift(decrementWithoutThrow)
@@ -55,7 +55,7 @@ logIt(index_1.Either
     .lift(decrementWithoutThrow)
     .lift(decrementWithoutThrow)
     .lift(decrementWithoutThrow));
-var decrementWithThrow = function (value) {
+const decrementWithThrow = (value) => {
     if (value <= 0) {
         throw Error("Value too low");
     }
@@ -63,15 +63,15 @@ var decrementWithThrow = function (value) {
 };
 logIt(index_1.Either
     .right(3)
-    .flatMap(function (value) { return index_1.Either.from(decrementWithThrow(value)); })
-    .flatMap(function (value) { return index_1.Either.from(decrementWithThrow(value)); })
-    .flatMap(function (value) { return index_1.Either.from(decrementWithThrow(value)); }));
+    .flatMap((value) => index_1.Either.from(decrementWithThrow(value)))
+    .flatMap((value) => index_1.Either.from(decrementWithThrow(value)))
+    .flatMap((value) => index_1.Either.from(decrementWithThrow(value))));
 logIt(index_1.Either
     .right(3)
-    .flatMap(function (value) { return index_1.Either.from(decrementWithThrow(value)); })
-    .flatMap(function (value) { return index_1.Either.from(decrementWithThrow(value)); })
-    .flatMap(function (value) { return index_1.Either.from(decrementWithThrow(value)); })
-    .flatMap(function (value) { return index_1.Either.from(decrementWithThrow(value)); }));
+    .flatMap((value) => index_1.Either.from(decrementWithThrow(value)))
+    .flatMap((value) => index_1.Either.from(decrementWithThrow(value)))
+    .flatMap((value) => index_1.Either.from(decrementWithThrow(value)))
+    .flatMap((value) => index_1.Either.from(decrementWithThrow(value))));
 logIt(index_1.Either
     .right(3)
     .lift(decrementWithThrow)
@@ -83,23 +83,26 @@ logIt(index_1.Either
     .lift(decrementWithThrow)
     .lift(decrementWithThrow)
     .lift(decrementWithThrow));
-var writeLog = function (writer) {
-    var result = writer.get();
-    console.log("Value:\n" + result.value + "\nLog:\n" + result.log.join("\n"));
+const writeLog = (writer) => {
+    const result = writer.get();
+    console.log(`Value:
+${result.value}
+Log:
+${result.log.join("\n")}`);
 };
 writeLog(index_1.Writer.writer(5)
-    .flatMap(function (value) { return index_1.Writer.writer(value + 3, ["Added 3"]); })
-    .flatMap(function (value) { return index_1.Writer.writer(value / 2, ["Divided by 2"]); })
-    .flatMap(function (value) { return index_1.Writer.writer(value - 2, ["Subtracted 2"]); }));
+    .flatMap(value => index_1.Writer.writer(value + 3, ["Added 3"]))
+    .flatMap(value => index_1.Writer.writer(value / 2, ["Divided by 2"]))
+    .flatMap(value => index_1.Writer.writer(value - 2, ["Subtracted 2"])));
 writeLog(index_1.Writer.writer(5)
-    .liftWithLog(function (value) { return [value + 3, "Added 3"]; })
-    .liftWithLog(function (value) { return [value / 2, "Divided by 2"]; })
-    .liftWithLog(function (value) { return [value / 2, "Divided by 2"]; })
-    .liftWithLog(function (value) { return [value - 2, "Subtracted 2"]; }));
-console.log(index_1.ifElse(1 === 1, function () { return "True!"; }, function () { return "False!"; }));
-console.log(index_1.ifElse(1 === 2, function () { return "True!"; }, function () { return "False!"; }));
-console.log(index_1.ifElse(1 === 1, function () { return "True!"; }));
-console.log(index_1.ifElse(1 === 2, function () { return "True!"; }));
+    .liftWithLog(value => [value + 3, "Added 3"])
+    .liftWithLog(value => [value / 2, "Divided by 2"])
+    .liftWithLog(value => [value / 2, "Divided by 2"])
+    .liftWithLog(value => [value - 2, "Subtracted 2"]));
+console.log(index_1.ifElse(1 === 1, () => "True!", () => "False!"));
+console.log(index_1.ifElse(1 === 2, () => "True!", () => "False!"));
+console.log(index_1.ifElse(1 === 1, () => "True!"));
+console.log(index_1.ifElse(1 === 2, () => "True!"));
 console.log(index_1.switchCase("dog", [
     ["cat", "meow"],
     ["dog", "woof"],
@@ -110,4 +113,20 @@ console.log(index_1.switchCase("sheep", [
     ["dog", "woof"],
     ["cow", "moo"],
 ], "baa"));
+const justValues = index_1.Enumerable.from([1, 2, 3, 4, 5]);
+for (const value of justValues) {
+    console.log(value);
+}
+const mappedValues = index_1.Enumerable
+    .from([1, 2, 3, 4, 5])
+    .map((value) => value * 2);
+for (const value of mappedValues) {
+    console.log(value);
+}
+const filteredValues = index_1.Enumerable
+    .from([1, 2, 3, 4, 5])
+    .filter((value) => value < 2 || value > 3);
+for (const value of filteredValues) {
+    console.log(value);
+}
 //# sourceMappingURL=test.js.map

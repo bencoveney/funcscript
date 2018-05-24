@@ -4,7 +4,9 @@
 		"sourceMap": true,
 		"declaration": true,
 		"outDir": "bin",
-		"pretty": true
+		"pretty": true,
+		"target": "es6",
+		"module": "commonjs"
 	},
 	"include": [
 		"src/**/*.ts"

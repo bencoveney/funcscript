@@ -1,75 +1,74 @@
 "use strict";
-exports.__esModule = true;
-var Either = /** @class */ (function () {
-    function Either(state) {
+Object.defineProperty(exports, "__esModule", { value: true });
+class Either {
+    constructor(state) {
         this.state = state;
     }
-    Either.left = function (error) {
+    static left(error) {
         return new Either({ hasValue: false, store: error });
-    };
-    Either.right = function (value) {
+    }
+    static right(value) {
         return new Either({ hasValue: true, store: value });
-    };
-    Either.from = function (value) {
+    }
+    static from(value) {
         if (value instanceof Either) {
             return value;
         }
         return this.create(value);
-    };
-    Either.tryFrom = function (mightFail) {
+    }
+    static tryFrom(mightFail) {
         try {
             return Either.from(mightFail());
         }
         catch (error) {
             return Either.left(error);
         }
-    };
-    Either.create = function (value) {
+    }
+    static create(value) {
         return Either.isError(value) ? Either.left(value) : Either.right(value);
-    };
-    Either.tryCreate = function (mightFail) {
+    }
+    static tryCreate(mightFail) {
         try {
             return Either.create(mightFail());
         }
         catch (error) {
             return Either.left(error);
         }
-    };
-    Either.isError = function (value) {
+    }
+    static isError(value) {
         return value instanceof Error;
-    };
-    Either.prototype.getOrElse = function (defaultValue) {
+    }
+    getOrElse(defaultValue) {
         return this.state.hasValue ? this.state.store : defaultValue;
-    };
-    Either.prototype.hasValue = function () {
+    }
+    hasValue() {
         return this.state.hasValue;
-    };
-    Either.prototype.flatMap = function (mapper) {
+    }
+    flatMap(mapper) {
         if (this.state.hasValue) {
-            var value_1 = this.state.store;
-            return Either.tryFrom(function () { return mapper(value_1); });
+            const value = this.state.store;
+            return Either.tryFrom(() => mapper(value));
         }
         else {
             return Either.left(this.state.store);
         }
-    };
-    Either.prototype.lift = function (mapper) {
-        return this.ifElse(mapper, function (error) { return Either.left(error); });
-    };
-    Either.prototype.ifElse = function (right, left) {
+    }
+    lift(mapper) {
+        return this.ifElse(mapper, (error) => Either.left(error));
+    }
+    ifElse(right, left) {
         if (this.state.hasValue) {
-            var value_2 = this.state.store;
-            return Either.tryFrom(function () { return right(value_2); });
+            const value = this.state.store;
+            return Either.tryFrom(() => right(value));
         }
         else {
-            var error_1 = this.state.store;
-            return Either.tryFrom(function () { return left(error_1); });
+            const error = this.state.store;
+            return Either.tryFrom(() => left(error));
         }
-    };
-    Either.prototype.caseOf = function (cases) {
+    }
+    caseOf(cases) {
         return this.ifElse(cases.right, cases.left);
-    };
-    return Either;
-}());
+    }
+}
 exports.Either = Either;
 //# sourceMappingURL=either.js.map

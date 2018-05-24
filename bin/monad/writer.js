@@ -1,45 +1,44 @@
 "use strict";
-exports.__esModule = true;
-var Writer = /** @class */ (function () {
-    function Writer(state) {
+Object.defineProperty(exports, "__esModule", { value: true });
+class Writer {
+    constructor(state) {
         this.state = state;
     }
-    Writer.writer = function (value, log) {
+    static writer(value, log) {
         return new Writer({
-            value: value,
-            log: log || []
+            value,
+            log: log || [],
         });
-    };
-    Writer.prototype.flatMap = function (mapper) {
-        var mapped = mapper(this.state.value);
+    }
+    flatMap(mapper) {
+        const mapped = mapper(this.state.value);
         return Writer.writer(mapped.get().value, this.state.log.concat(mapped.get().log));
-    };
-    Writer.prototype.lift = function (mapper) {
-        var mapped = mapper(this.state.value);
+    }
+    lift(mapper) {
+        const mapped = mapper(this.state.value);
         if (mapped instanceof Writer) {
-            return this.flatMap(function () { return mapped; });
+            return this.flatMap(() => mapped);
         }
         else {
             return Writer.writer(mapped, this.state.log);
         }
-    };
-    Writer.prototype.liftWithLog = function (mapper) {
-        var mapped = mapper(this.state.value);
+    }
+    liftWithLog(mapper) {
+        const mapped = mapper(this.state.value);
         if (mapped instanceof Writer) {
             // Potentially "Output" type could be a log/array, which whill break the
-            return this.flatMap(function () { return mapped; });
+            return this.flatMap(() => mapped);
         }
         else {
-            var mappedArray = mapped;
-            var value = mappedArray[0];
-            var logged = mappedArray.length > 1 ? [mappedArray[1]] : [];
+            const mappedArray = mapped;
+            const [value] = mappedArray;
+            const logged = mappedArray.length > 1 ? [mappedArray[1]] : [];
             return Writer.writer.apply(null, [value, this.state.log.concat(logged)]);
         }
-    };
-    Writer.prototype.get = function () {
+    }
+    get() {
         return this.state;
-    };
-    return Writer;
-}());
+    }
+}
 exports.Writer = Writer;
 //# sourceMappingURL=writer.js.map

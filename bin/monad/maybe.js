@@ -1,19 +1,19 @@
 "use strict";
-exports.__esModule = true;
-var Maybe = /** @class */ (function () {
-    function Maybe(value) {
+Object.defineProperty(exports, "__esModule", { value: true });
+class Maybe {
+    constructor(value) {
         this.value = value;
     }
-    Maybe.just = function (value) {
+    static just(value) {
         if (Maybe.IsEmpty(value)) {
             throw Error("Cannot call Just on an empty value. Try Create().");
         }
         return new Maybe(value);
-    };
-    Maybe.nothing = function () {
+    }
+    static nothing() {
         return new Maybe(null);
-    };
-    Maybe.from = function (value) {
+    }
+    static from(value) {
         if (Maybe.IsEmpty(value)) {
             return Maybe.nothing();
         }
@@ -21,29 +21,28 @@ var Maybe = /** @class */ (function () {
             return value;
         }
         return Maybe.just(value);
-    };
-    Maybe.IsEmpty = function (value) {
+    }
+    static IsEmpty(value) {
         return value === undefined || value === null;
-    };
-    Maybe.prototype.getOrElse = function (defaultValue) {
+    }
+    getOrElse(defaultValue) {
         return Maybe.IsEmpty(this.value) ? defaultValue : this.value;
-    };
-    Maybe.prototype.hasValue = function () {
+    }
+    hasValue() {
         return !Maybe.IsEmpty(this.value);
-    };
-    Maybe.prototype.flatMap = function (mapper) {
-        return this.ifElse(mapper, function () { return Maybe.nothing(); });
-    };
-    Maybe.prototype.lift = function (mapper) {
-        return this.ifElse(function (value) { return Maybe.from(mapper(value)); }, function () { return Maybe.nothing(); });
-    };
-    Maybe.prototype.ifElse = function (just, nothing) {
+    }
+    flatMap(mapper) {
+        return this.ifElse(mapper, () => Maybe.nothing());
+    }
+    lift(mapper) {
+        return this.ifElse((value) => Maybe.from(mapper(value)), () => Maybe.nothing());
+    }
+    ifElse(just, nothing) {
         return Maybe.from(Maybe.IsEmpty(this.value) ? nothing() : just(this.value));
-    };
-    Maybe.prototype.caseOf = function (cases) {
+    }
+    caseOf(cases) {
         return this.ifElse(cases.just, cases.nothing);
-    };
-    return Maybe;
-}());
+    }
+}
 exports.Maybe = Maybe;
 //# sourceMappingURL=maybe.js.map
