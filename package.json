@@ -1,6 +1,6 @@
 {
   "name": "funcscript",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Functional programming helpers for TypeScript and JavaScript.",
   "main": "bin/index.js",
   "scripts": {
