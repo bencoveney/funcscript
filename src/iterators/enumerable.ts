@@ -13,6 +13,10 @@ export class Enumerable<Type> implements Iterator<Type>, Iterable<Type> {
 		)
 	}
 
+	public static of<Type>(...args: Type[]): Enumerable<Type> {
+		return Enumerable.from(args);
+	}
+
 	public static generate<Type>(generator: () => IterableIterator<Type>): Enumerable<Type> {
 		return new Enumerable<Type>(generator());
 	}
