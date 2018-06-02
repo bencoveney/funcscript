@@ -1,5 +1,5 @@
 {
-  "name": "typescript-monads",
+  "name": "funcscript",
   "version": "1.0.0",
   "description": "",
   "main": "bin/index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bencoveney/typescript-monads.git"
+    "url": "git+https://github.com/bencoveney/funcscript.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bencoveney/typescript-monads/issues"
+    "url": "https://github.com/bencoveney/funcscript/issues"
   },
-  "homepage": "https://github.com/bencoveney/typescript-monads#readme",
+  "homepage": "https://github.com/bencoveney/funcscript#readme",
   "dependencies": {
     "typescript": "^2.8.3"
   }

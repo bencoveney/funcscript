@@ -11,6 +11,9 @@ class Enumerable {
             }
         });
     }
+    static of(...args) {
+        return Enumerable.from(args);
+    }
     static generate(generator) {
         return new Enumerable(generator());
     }
