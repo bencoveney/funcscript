@@ -91,9 +91,22 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bencoveney/funcscript/blob/166d6be/src/controlFlow/switchCase.ts#L3">controlFlow/switchCase.ts:3</a></li>
+									<li>Defined in <a href="https://github.com/bencoveney/funcscript/blob/050b0f0/src/controlFlow/switchCase.ts#L13">controlFlow/switchCase.ts:13</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Checks the expression against each case and returns the result for the first matching case, otherwise returns the default value.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>template</dt>
+									<dd><p>Case The type of the expression and cases.</p>
+									</dd>
+									<dt>template</dt>
+									<dd><p>Result The type of the return values.</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
@@ -107,15 +120,25 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5>expression: <span class="tsd-signature-type">Case</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The expression to check against the cases.</p>
+									</div>
 								</li>
 								<li>
 									<h5>cases: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">Case</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Result</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Array of case pairs, where the first value will be compared against the expression, and the second value will be the result.</p>
+									</div>
 								</li>
 								<li>
 									<h5>defaultValue: <span class="tsd-signature-type">Result</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The default value to return if no cases match the expression.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Result</span></h4>
+							<p>The result for the first matching case, otherwise returns the default value.</p>
 						</li>
 					</ul>
 				</section>
@@ -126,12 +149,6 @@
 				<ul>
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
-					</li>
-					<li class="label tsd-is-external">
-						<span>Internals</span>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_check_.html">"check"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="_controlflow_ifelse_.html">"control<wbr>Flow/if<wbr>Else"</a>
@@ -156,12 +173,6 @@
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="_monad_writer_.html">"monad/writer"</a>
-					</li>
-					<li class="label tsd-is-external">
-						<span>Externals</span>
-					</li>
-					<li class=" tsd-kind-external-module tsd-is-external">
-						<a href="_index_.html">"index"</a>
 					</li>
 				</ul>
 			</nav>

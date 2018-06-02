@@ -5,9 +5,8 @@
   "main": "bin/index.js",
   "scripts": {
     "build": "tsc",
-    "check": "node --experimental-modules bin/check.js",
     "docs": "typedoc --exclude \"**/*+(test|index).ts\" --out docs/ src/ && nodetouch docs/.nojekyll",
-    "test": "npm run build && npm run check && npm run unit-test && npm run remap-coverage && npm run docs",
+    "test": "npm run build && npm run unit-test && npm run remap-coverage && npm run docs",
     "unit-test": "istanbul cover --report \"json\" --root bin/ -i **/*.js -x **/*.test.js node_modules\\jasmine\\bin\\jasmine.js -- --config=jasmine.json",
     "remap-coverage": "remap-istanbul -i coverage/coverage-final.json -o coverage/html -t html"
   },

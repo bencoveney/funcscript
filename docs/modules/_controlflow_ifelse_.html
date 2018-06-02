@@ -85,16 +85,26 @@
 					<a name="ifelse" class="tsd-anchor"></a>
 					<h3>if<wbr>Else</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">if<wbr>Else&lt;Result&gt;<span class="tsd-signature-symbol">(</span>condition<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, truePath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, falsePath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Result</span></li>
-						<li class="tsd-signature tsd-kind-icon">if<wbr>Else&lt;Result&gt;<span class="tsd-signature-symbol">(</span>condition<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, truePath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Result</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+						<li class="tsd-signature tsd-kind-icon">if<wbr>Else&lt;Result&gt;<span class="tsd-signature-symbol">(</span>condition<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, truePath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, falsePath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Result</span></li>
+						<li class="tsd-signature tsd-kind-icon">if<wbr>Else&lt;Result&gt;<span class="tsd-signature-symbol">(</span>condition<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, truePath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Result</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bencoveney/funcscript/blob/166d6be/src/controlFlow/ifElse.ts#L1">controlFlow/ifElse.ts:1</a></li>
+									<li>Defined in <a href="https://github.com/bencoveney/funcscript/blob/050b0f0/src/controlFlow/ifElse.ts#L10">controlFlow/ifElse.ts:10</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Checks the condition and returns the result of either the true path or false path.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>template</dt>
+									<dd><p>Result The type of return value for any paths.</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
@@ -104,10 +114,20 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>condition: <span class="tsd-signature-type">boolean</span></h5>
+									<h5>condition: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The condition to check.</p>
+										</div>
+									</div>
 								</li>
 								<li>
 									<h5>truePath: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The path to execute if the condition is true.</p>
+										</div>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
@@ -123,6 +143,9 @@
 								</li>
 								<li>
 									<h5>falsePath: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The path to execute if the condition is false.</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
@@ -138,13 +161,24 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Result</span></h4>
+							<p>The result of the executed path.</p>
 						</li>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bencoveney/funcscript/blob/166d6be/src/controlFlow/ifElse.ts#L7">controlFlow/ifElse.ts:7</a></li>
+									<li>Defined in <a href="https://github.com/bencoveney/funcscript/blob/050b0f0/src/controlFlow/ifElse.ts#L24">controlFlow/ifElse.ts:24</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Checks the condition and returns the result of either the true path or undefined.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>template</dt>
+									<dd><p>Result The type of return value for any paths.</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
@@ -154,10 +188,20 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>condition: <span class="tsd-signature-type">boolean</span></h5>
+									<h5>condition: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The condition to check.</p>
+										</div>
+									</div>
 								</li>
 								<li>
 									<h5>truePath: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The path to execute if the condition is true.</p>
+										</div>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
@@ -176,6 +220,7 @@
 								<span class="tsd-signature-symbol"> | </span>
 								<span class="tsd-signature-type">undefined</span>
 							</h4>
+							<p>The result of the true path, or undefined.</p>
 						</li>
 					</ul>
 				</section>
@@ -186,12 +231,6 @@
 				<ul>
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
-					</li>
-					<li class="label tsd-is-external">
-						<span>Internals</span>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_check_.html">"check"</a>
 					</li>
 					<li class="current tsd-kind-external-module">
 						<a href="_controlflow_ifelse_.html">"control<wbr>Flow/if<wbr>Else"</a>
@@ -216,12 +255,6 @@
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="_monad_writer_.html">"monad/writer"</a>
-					</li>
-					<li class="label tsd-is-external">
-						<span>Externals</span>
-					</li>
-					<li class=" tsd-kind-external-module tsd-is-external">
-						<a href="_index_.html">"index"</a>
 					</li>
 				</ul>
 			</nav>
